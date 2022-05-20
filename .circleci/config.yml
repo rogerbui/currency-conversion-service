@@ -80,8 +80,8 @@ jobs:
     steps:
       - run: echo test step
       - attach_workspace:
-          at: ~/workspace
-      - run: ls ~/workspace/complied_output.txt
+          at: ~/project/workspace
+      - run: ls ~/project/workspace/complied_output.txt
 
   deploy:
     docker:
@@ -90,8 +90,8 @@ jobs:
     steps:
       - run: echo deploy step
       - attach_workspace:
-          at: ~/workspace
-      - run: ls ~/workspace/compiled_output.txt
+          at: ~/project/workspace
+      - run: ls ~/project/workspace/compiled_output.txt
 workflows:
   version: 2
   build-test-deploy:
