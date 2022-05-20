@@ -5,7 +5,6 @@ jobs:
       - image: cimg/openjdk:11.0
     steps:
       - run: echo build step
-      - run: exit 1
 
   test:
     docker:
