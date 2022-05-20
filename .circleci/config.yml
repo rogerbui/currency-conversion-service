@@ -1,0 +1,23 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/openjdk:11.0
+    steps:
+      - run: echo build step
+      - run: exit 1
+
+  test:
+    docker:
+      - image: cimg/openjdk:11.0
+    steps:
+      - run: echo test step
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
