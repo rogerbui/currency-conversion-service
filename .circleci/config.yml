@@ -1,22 +1,59 @@
 version: 2.1
 jobs:
-  build:
+  build-frontend:
     docker:
       - image: cimg/openjdk:11.0
     steps:
-      - run: echo build step
+      - run: echo build frontend step
 
-  test:
+  build-backend:
     docker:
       - image: cimg/openjdk:11.0
     steps:
-      - run: echo test step
+      - run: echo build backend step
+
+  test-frontend:
+    docker:
+      - image: cimg/openjdk:11.0
+    steps:
+      - run: echo test frontend step
+
+  test-backend:
+    docker:
+      - image: cimg/openjdk:11.0
+    steps:
+      - run: echo test backend step
+
+  integration-test:
+    docker:
+      - image: cimg/openjdk:11.0
+    steps:
+      - run: echo integration test step
+
+  deploy:
+    docker:
+      - image: cimg/openjdk:11.0
+    steps:
+      - run: echo deploy step
 
 workflows:
   version: 2
   build-and-test:
     jobs:
-      - build
-      - test:
+      - build-frontend
+      - build-backend
+      - test-frontend
           requires:
-            - build
+            - build-frontend
+      - test-backend
+          requires:
+            - build-backend
+      - integration-test
+          requires:
+            - build-frontend
+            - build-backend
+      - deploy
+          requires:
+            - test-frontend
+            - test-backend
+            - integration-test
