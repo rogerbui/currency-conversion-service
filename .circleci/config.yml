@@ -67,7 +67,7 @@ jobs:
     steps:
       - run: echo build step
       - run: mkdir build_output
-      - run: echo "$LS"
+      - run: echo "$PWD" "$LS"
       - run: touch build_output/compiled_output.txt
       - persist_to_workspace:
           root: build-output
