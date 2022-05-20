@@ -66,7 +66,7 @@ jobs:
     #working_directory: ~/currency-conversion-service
     steps:
       - run: echo build step
-      - run: echo pwd
+      - run: echo "$PWD"
       - run: mkdir build_output
       - run: touch build_output/compiled_output.txt
       - persist_to_workspace:
